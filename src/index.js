@@ -6,14 +6,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './reducer/store.js';
+import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
 
 ReactDOM.render(
   <BrowserRouter>
-    <Provider store={store}>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>{' '}
-    </Provider>
+    <ScopedCssBaseline>
+      <Provider store={store}>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>{' '}
+      </Provider>
+    </ScopedCssBaseline>
   </BrowserRouter>,
   document.getElementById('root'),
 );
