@@ -1,6 +1,6 @@
 import React from 'react';
 
-const index = () => {
+const EpisodesPage = () => {
   return (
     <div>
       <h1>Hello from Episodes Page</h1>
@@ -8,4 +8,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default EpisodesPage;

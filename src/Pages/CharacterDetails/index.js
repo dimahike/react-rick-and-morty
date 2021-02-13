@@ -1,11 +1,8 @@
+import { Grid } from '@material-ui/core';
 import React from 'react';
 
-const index = () => {
-  return (
-    <div>
-      <h1>Hello from Character Details</h1>
-    </div>
-  );
+const CharacterDetails = () => {
+  return <div></div>;
 };
 
-export default index;
+export default CharacterDetails;

@@ -8,8 +8,8 @@ import EpisodesPage from './Pages/EpisodesPage';
 import LocationsPage from './Pages/LocationsPage';
 import WatchListPage from './Pages/WatchList';
 import CharacterDetails from './Pages/CharacterDetails';
-import DrawerUI from './UI/DrawerUI';
-import { makeStyles } from '@material-ui/core';
+import { Box, makeStyles, SwipeableDrawer, useMediaQuery, useTheme } from '@material-ui/core';
+import CharactersFilter from './Pages/HomePage/Components/CharactersFilter';
 
 const drawerWidth = 240;
 
@@ -24,47 +24,58 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    // marginLeft: drawerWidth,
+    marginLeft: drawerWidth,
+    marginTop: '100px',
+    [theme.breakpoints.down('720')]: {
+      marginLeft: 0,
+    },
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    marginLeft: drawerWidth,
   },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
+  drawer: {
+    paddingTop: '15px',
+  },
+  aside: {
+    width: drawerWidth,
+    top: '100px',
+    left: '15px',
   },
 }));
 
 function App() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up(720));
 
   return (
     <div className={classes.root}>
       <header>
-        <Header open={open} handleDrawerOpen={handleDrawerOpen} />
+        <Header />
       </header>
-      <DrawerUI open={open} closeDrawer={handleDrawerClose} />
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}>
-        <div className={classes.drawerHeader} />
+
+      {/* {matches ? (
+        <Box className={classes.filter}>
+          <Box position={['block', 'absolute']} className={classes.aside}>
+            <CharactersFilter />
+          </Box>
+        </Box>
+      ) : (
+        <SwipeableDrawer
+          anchor="left"
+          open={open}
+          onClose={toggleDrawer(false)}
+          onOpen={toggleDrawer(true)}>
+          <Box className={classes.drawer}>
+            <CharactersFilter />
+          </Box>
+        </SwipeableDrawer>
+      )} */}
+
+      <main className={clsx(classes.content)}>
         <Switch>
           <Route path="/" component={HomePage} exact />
           <Route path="/episodes" component={EpisodesPage} exact />

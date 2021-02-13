@@ -1,6 +1,6 @@
 import React from 'react';
 
-const index = () => {
+const WatchListPage = () => {
   return (
     <div>
       <h1>Hello from Watch List</h1>
@@ -8,4 +8,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default WatchListPage;

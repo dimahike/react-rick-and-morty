@@ -10,12 +10,14 @@ import {
 } from '@material-ui/core';
 import FilterListIcon from '@material-ui/icons/FilterList';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 import TvIcon from '@material-ui/icons/Tv';
 import ExploreIcon from '@material-ui/icons/Explore';
 import QueuePlayNextIcon from '@material-ui/icons/QueuePlayNext';
+import { useDispatch } from 'react-redux';
+import { drawer } from '../reducer/actions/headerActions';
 
 const drawerWidth = 240;
 
@@ -27,14 +29,6 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
     }),
   },
   menuButton: {
@@ -61,28 +55,35 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = ({ handleDrawerOpen, open }) => {
+const Header = () => {
   const classes = useStyles();
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('md'));
-  // const preventDefault = (event) => event.preventDefault();
+  const dispatch = useDispatch();
+  const matches = useMediaQuery(theme.breakpoints.up(720));
+
+  useEffect(() => {
+    dispatch(drawer(false));
+  }, [dispatch]);
+
+  const handleDrawerOpen = () => {
+    dispatch(drawer(true));
+  };
 
   return (
     <div className={classes.root}>
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}>
+      <AppBar position="fixed" className={clsx(classes.appBar)}>
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}>
-            <FilterListIcon />
-          </IconButton>
+          {!matches && (
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton)}>
+              <FilterListIcon />
+            </IconButton>
+          )}
+
           <Typography variant="h6" noWrap className={clsx(classes.title)}>
             R&M {matches ? 'true' : 'false'}
           </Typography>
