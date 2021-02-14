@@ -41,7 +41,7 @@ const CharactersFilter = () => {
         </Typography>
         <List>
           {statuses.map((status) => (
-            <ListItem button>
+            <ListItem button key={status}>
               <ListItemText primary={status} className={classes.uppercase} />
             </ListItem>
           ))}
@@ -53,7 +53,7 @@ const CharactersFilter = () => {
         </Typography>
         <List>
           {genders.map((gender) => (
-            <ListItem button>
+            <ListItem button key={gender}>
               <ListItemText primary={gender} className={classes.uppercase} />
             </ListItem>
           ))}

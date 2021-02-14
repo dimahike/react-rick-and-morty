@@ -8,8 +8,7 @@ import EpisodesPage from './Pages/EpisodesPage';
 import LocationsPage from './Pages/LocationsPage';
 import WatchListPage from './Pages/WatchList';
 import CharacterDetails from './Pages/CharacterDetails';
-import { Box, makeStyles, SwipeableDrawer, useMediaQuery, useTheme } from '@material-ui/core';
-import CharactersFilter from './Pages/HomePage/Components/CharactersFilter';
+import { makeStyles, useMediaQuery, useTheme } from '@material-ui/core';
 
 const drawerWidth = 240;
 

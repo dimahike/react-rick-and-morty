@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, makeStyles, SwipeableDrawer, useMediaQuery, useTheme } from '@material-ui/core';
-import CharactersFilter from '../Pages/HomePage/Components/CharactersFilter';
 import { useDispatch, useSelector } from 'react-redux';
 import { drawer as drawerAction } from '../reducer/actions/headerActions';
 
@@ -8,7 +7,7 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
-    paddingTop: '15px',
+    // paddingTop: '15px',
   },
   aside: {
     width: drawerWidth,
@@ -17,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Filter = (props) => {
+const Aside = (props) => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const theme = useTheme();
@@ -52,4 +51,4 @@ const Filter = (props) => {
   );
 };
 
-export default Filter;
+export default Aside;

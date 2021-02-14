@@ -10,13 +10,13 @@ import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
 
 ReactDOM.render(
   <BrowserRouter>
-    <ScopedCssBaseline>
-      <Provider store={store}>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>{' '}
-      </Provider>
-    </ScopedCssBaseline>
+    {/* <ScopedCssBaseline> */}
+    <Provider store={store}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>{' '}
+    </Provider>
+    {/* </ScopedCssBaseline> */}
   </BrowserRouter>,
   document.getElementById('root'),
 );

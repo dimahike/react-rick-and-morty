@@ -3,9 +3,9 @@ import { Box, makeStyles, Typography, useMediaQuery, useTheme } from '@material-
 import Pagination from '@material-ui/lab/Pagination';
 
 import React from 'react';
-import CardUI from './Components/CardUI';
-import Filter from '../../UI/Filter';
-import CharactersFilter from './Components/CharactersFilter';
+import CardUI from './components/CardUI';
+import Aside from '../../UI/Aside';
+import CharactersFilter from './components/CharactersFilter';
 
 const useStyles = makeStyles((theme) => ({
   maxWidth: {
@@ -24,15 +24,16 @@ const HomePage = () => {
 
   return (
     <>
-      <Filter>
+      <Aside>
         <CharactersFilter />
-      </Filter>
-      <Box>
-        <Box display="flex" justifyContent="start" mb={1} ml={4}>
-          <Typography variant="h5">Chatacters :</Typography>
-        </Box>
-        <Box flexGrow={3} className={classes.maxWidth}>
-          <Box display="flex" justifyContent="center" flexWrap="wrap">
+      </Aside>
+
+      <Box display="flex" justifyContent="center">
+        <Box>
+          <Box display="flex" justifyContent="start" mb={1} ml={4}>
+            <Typography variant="h5">Chatacters :</Typography>
+          </Box>
+          <Box display="flex" justifyContent="center" flexWrap="wrap" className={classes.maxWidth}>
             <Box display="flex" justifyContent="center" m={[1, 3]}>
               <CardUI />
             </Box>
