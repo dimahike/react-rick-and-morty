@@ -17,7 +17,7 @@ const EpisodesPage = () => {
         </Box>
         <TableUI
           numRowsPerPage={25}
-          numPage={episodes.page}
+          numPage={episodes.info.page}
           count={episodes.info.count}
           rows={episodes.results}
           episode={true}

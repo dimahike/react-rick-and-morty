@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -8,37 +8,39 @@ import CardMedia from '@material-ui/core/CardMedia';
 
 import Typography from '@material-ui/core/Typography';
 import { useHistory } from 'react-router-dom';
+import { Box } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    width: 240,
+    height: 330,
   },
   media: {
-    height: 140,
+    height: 220,
   },
 });
-const CardUI = (props) => {
+const CardUI = ({ character }) => {
   const classes = useStyles();
   const history = useHistory();
+  // const [character, setcharacter] = useState(items);
 
   const onClickHandle = () => {
-    history.push(`/character/1`);
+    history.push(`/character/${character.id}`);
   };
 
   return (
     <Card className={classes.root} onClick={onClickHandle}>
       <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
-          title="Contemplative Reptile"
-        />
+        <CardMedia className={classes.media} image={character.image} title={character.name} />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Rick Sanchez
+          <Typography gutterBottom variant="h6" component="h2">
+            {character.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Human
+            Species: {character.species}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            Status: {character.status}
           </Typography>
         </CardContent>
       </CardActionArea>

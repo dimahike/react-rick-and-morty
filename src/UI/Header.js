@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
 
   title: {
     flexGrow: 1,
+    color: theme.palette.warning.light,
   },
   hide: {
     display: 'none',
@@ -84,8 +85,8 @@ const Header = () => {
             </IconButton>
           )}
 
-          <Typography variant="h6" noWrap className={clsx(classes.title)}>
-            R&M {matches ? 'true' : 'false'}
+          <Typography variant="h6" className={clsx(classes.title)}>
+            R&M
           </Typography>
 
           {matches ? (

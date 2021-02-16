@@ -56,24 +56,6 @@ function App() {
         <Header />
       </header>
 
-      {/* {matches ? (
-        <Box className={classes.filter}>
-          <Box position={['block', 'absolute']} className={classes.aside}>
-            <CharactersFilter />
-          </Box>
-        </Box>
-      ) : (
-        <SwipeableDrawer
-          anchor="left"
-          open={open}
-          onClose={toggleDrawer(false)}
-          onOpen={toggleDrawer(true)}>
-          <Box className={classes.drawer}>
-            <CharactersFilter />
-          </Box>
-        </SwipeableDrawer>
-      )} */}
-
       <main className={clsx(classes.content)}>
         <Switch>
           <Route path="/" component={HomePage} exact />

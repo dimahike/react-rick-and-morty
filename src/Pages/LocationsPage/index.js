@@ -13,11 +13,11 @@ const LocationsPage = () => {
       </Aside>
       <Box>
         <Box display="flex" justifyContent="start" mb={1} ml={4}>
-          <Typography variant="h5"> Episodes :</Typography>
+          <Typography variant="h5">Episodes :</Typography>
         </Box>
         <TableUI
           numRowsPerPage={20}
-          numPage={locations.page}
+          numPage={locations.info.page}
           count={locations.info.count}
           rows={locations.results}
           location={true}

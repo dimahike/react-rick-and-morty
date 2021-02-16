@@ -10,7 +10,9 @@ import {
   TextField,
   Typography,
 } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { episodeList } from '../../../reducer/actions/episodeActions';
 
 const useStyles = makeStyles((theme) => ({
   leftGape: {
@@ -25,17 +27,11 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'uppercase',
     color: theme.palette.primary.dark,
   },
-  // formControl: {
-  //   margin: theme.spacing(1),
-  //   minWidth: 120,
-  // },
-  // selectEmpty: {
-  //   marginTop: theme.spacing(2),
-  // },
 }));
 
 const EpisodesFilter = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [name, setName] = useState('');
 
   const nameFieldHandler = (event, value) => {
@@ -43,13 +39,10 @@ const EpisodesFilter = () => {
     setName(event.target.value);
   };
 
-  // const handleSelect = (event) => {
-  //   const name = event.target.name;
-  //   setState({
-  //     ...state,
-  //     [name]: event.target.value,
-  //   });
-  // };
+  useEffect(() => {
+    dispatch(episodeList());
+  }, [dispatch]);
+
   return (
     <>
       <Box className={classes.input}>

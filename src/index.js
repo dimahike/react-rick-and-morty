@@ -12,9 +12,9 @@ ReactDOM.render(
   <BrowserRouter>
     {/* <ScopedCssBaseline> */}
     <Provider store={store}>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>{' '}
+      {/* <React.StrictMode> */}
+      <App />
+      {/* </React.StrictMode> */}
     </Provider>
     {/* </ScopedCssBaseline> */}
   </BrowserRouter>,
