@@ -15,8 +15,6 @@ import React, { useEffect, useState } from 'react';
 
 import poster from '../../../images/poster.jpg';
 
-const drawerWidth = 240;
-
 const useStyles = makeStyles((theme) => ({
   leftGape: {
     marginLeft: '25px',
@@ -31,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.dark,
   },
   posterImage: {
-    maxWidth: drawerWidth,
+    maxWidth: theme.spacing(30),
     top: 0,
   },
 }));
@@ -47,7 +45,6 @@ const DetailsSideBar = ({ episodes, changed }) => {
 
     for (var i = 0; i < episodes.length; i++) {
       if (episodes[i].watched) {
-        console.log('watched');
         watchedCounter += 1;
       }
     }

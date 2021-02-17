@@ -8,9 +8,8 @@ import EpisodesPage from './Pages/EpisodesPage';
 import LocationsPage from './Pages/LocationsPage';
 import WatchListPage from './Pages/WatchList';
 import CharacterDetails from './Pages/CharacterDetails';
-import { makeStyles, useMediaQuery, useTheme } from '@material-ui/core';
-
-const drawerWidth = 240;
+import { makeStyles } from '@material-ui/core';
+import { drawerWidth } from './data';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: drawerWidth,
+    marginLeft: theme.spacing(30),
     marginTop: '100px',
     [theme.breakpoints.down('720')]: {
       marginLeft: 0,
@@ -47,8 +46,6 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up(720));
 
   return (
     <div className={classes.root}>

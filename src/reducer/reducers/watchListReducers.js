@@ -44,9 +44,6 @@ export const watchListReducer = (
         };
       }
 
-    // const checkNullwatched = state.info.watched ?? 0;
-    // const watched = checkNullwatched ? state.info.watched + 1 : 1;
-
     case ADD_TO_WATCH_LIST_FAIL:
       return { ...state, changed: !state.changed, loading: false, error: action.payload };
 
@@ -54,8 +51,6 @@ export const watchListReducer = (
       const episodeId = action.payload;
       const findEpisode = state.episodes.find((episode) => episode.id === episodeId);
       findEpisode.watched = findEpisode.watched ? false : true;
-      console.log('findEpisode', findEpisode);
-      console.log('state', state);
 
       return { ...state, changed: !state.changed };
 

@@ -6,7 +6,6 @@ import {
   NativeSelect,
   Typography,
 } from '@material-ui/core';
-import { Alert } from '@material-ui/lab';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -21,8 +20,6 @@ const AdderToList = () => {
   const { loading, info, episodes, error } = useSelector((state) => state.episodeList);
 
   const selectorHandler = (e) => {
-    console.log('event', e.target.value);
-
     setSelector(e.target.value);
   };
 

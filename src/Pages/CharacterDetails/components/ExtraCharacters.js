@@ -9,8 +9,6 @@ const ExtraCharacters = () => {
 
   const shortListCharacters = !loading && characters.slice(0, 5);
 
-  console.log('characters', characters);
-
   useEffect(() => {
     dispatch(characterList());
   }, [dispatch]);

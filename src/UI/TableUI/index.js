@@ -41,21 +41,8 @@ export default function TableUI({
 }) {
   const classes = useStyles2();
 
-  const [rowsPerPage, setRowsPerPage] = React.useState(numRowsPerPage);
+  const emptyRows = numRowsPerPage - rows.length;
 
-  const emptyRows = rowsPerPage - rows.length;
-
-  // const handleChangePage = (event, newPage) => {
-  //   console.log('newPage', newPage);
-  //   setPage(newPage);
-  // };
-
-  // const handleChangeRowsPerPage = (event) => {
-  //   setRowsPerPage(parseInt(event.target.value, 10));
-  //   setPage(0);
-  // };
-
-  // console.log(Object.keys(rows[0]));
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="custom pagination table">
@@ -105,10 +92,10 @@ export default function TableUI({
         <TableFooter>
           <TableRow>
             <TablePagination
-              rowsPerPageOptions={[rowsPerPage]}
+              rowsPerPageOptions={[numRowsPerPage]}
               colSpan={3}
               count={count}
-              rowsPerPage={rowsPerPage}
+              rowsPerPage={numRowsPerPage}
               page={numPage}
               SelectProps={{
                 inputProps: { 'aria-label': 'rows per page' },

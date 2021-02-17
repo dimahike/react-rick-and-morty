@@ -19,8 +19,6 @@ import QueuePlayNextIcon from '@material-ui/icons/QueuePlayNext';
 import { useDispatch } from 'react-redux';
 import { drawer } from '../reducer/actions/headerActions';
 
-const drawerWidth = 240;
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -48,11 +46,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'none',
   },
   drawer: {
-    width: drawerWidth,
+    width: theme.spacing(30),
     flexShrink: 0,
   },
   drawerPaper: {
-    width: drawerWidth,
+    width: theme.spacing(30),
   },
 }));
 

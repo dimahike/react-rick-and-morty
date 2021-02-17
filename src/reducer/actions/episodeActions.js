@@ -53,7 +53,6 @@ export const episodeList = (page = 1, name = '', season = 0) => async (dispatch)
       const json2 = await response2.json();
 
       if (!response2.ok) {
-        // console.log(json);
         dispatch({
           type: EPISODE_LIST_SUCCESS,
           payload: {

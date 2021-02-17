@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -8,7 +8,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 
 import Typography from '@material-ui/core/Typography';
 import { useHistory } from 'react-router-dom';
-import { Box } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
@@ -22,7 +21,6 @@ const useStyles = makeStyles({
 const CardUI = ({ character }) => {
   const classes = useStyles();
   const history = useHistory();
-  // const [character, setcharacter] = useState(items);
 
   const onClickHandle = () => {
     history.push(`/character/${character.id}`);

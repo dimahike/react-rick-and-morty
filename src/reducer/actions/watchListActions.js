@@ -14,7 +14,6 @@ export const addToWatchList = (id) => async (dispatch, getState) => {
     const response = await fetch(`https://rickandmortyapi.com/api/episode/${id}`);
     const json = await response.json();
     if (!response.ok) {
-      // console.log(json);
       dispatch({
         type: ADD_TO_WATCH_LIST_FAIL,
         payload: {
@@ -23,7 +22,7 @@ export const addToWatchList = (id) => async (dispatch, getState) => {
       });
       return;
     }
-    // console.log('json', json);
+
     dispatch({
       type: ADD_TO_WATCH_LIST_SUCCESS,
       payload: json,

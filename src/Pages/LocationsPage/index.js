@@ -1,7 +1,7 @@
 import { Box, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { locations, rows } from '../../data';
+
 import { locationList } from '../../reducer/actions/locationActions';
 import Aside from '../../UI/Aside';
 import TableUI from '../../UI/TableUI';
@@ -45,7 +45,7 @@ const LocationsPage = () => {
   useEffect(() => {
     const numPage = page + 1;
     dispatch(locationList(numPage, nameFilter, typeFilter, dimensionFilter));
-  }, [page]);
+  }, [dispatch, page]);
 
   return (
     <>

@@ -1,7 +1,7 @@
 import { Box, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { episodes } from '../../data';
+
 import { episodeList } from '../../reducer/actions/episodeActions';
 import Aside from '../../UI/Aside';
 import TableUI from '../../UI/TableUI';
@@ -30,7 +30,7 @@ const EpisodesPage = () => {
   useEffect(() => {
     const numPage = page + 1;
     dispatch(episodeList(numPage, nameFilter, SeasonFilter));
-  }, [page]);
+  }, [dispatch, page]);
 
   const filterHandler = (filter) => {
     switch (filter.type) {

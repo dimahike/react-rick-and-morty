@@ -14,14 +14,13 @@ import {
 } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { green } from '@material-ui/core/colors';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Alert } from '@material-ui/lab';
 import {
   checkBoxWatcheList,
   clearWatchList,
   removeEpisodeFromWatchList,
 } from '../../../reducer/actions/watchListActions';
-import { CLEAR_WATCH_LIST } from '../../../reducer/constants/watchListConstants';
 
 const useStyles = makeStyles((theme) => ({
   headTable: {
@@ -51,21 +50,16 @@ const WatchList = ({ episodes }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  // const { episodes } = useSelector((state) => state.watchList);
-
   const cheackBoxHandler = (episodeId) => {
-    // console.log(episodeId);
     dispatch(checkBoxWatcheList(episodeId));
   };
 
   const removeEpisodeHandler = (episodeId) => {
-    console.log('remove');
     dispatch(removeEpisodeFromWatchList(episodeId));
   };
 
   const clearWatchListHandler = () => {
     if (window.confirm('Are You Sure?')) {
-      console.log('clear');
       dispatch(clearWatchList());
     }
   };

@@ -10,7 +10,7 @@ import { Alert } from '@material-ui/lab';
 
 const WatchListPage = () => {
   const [open, setOpen] = React.useState(false);
-  const { loading, episodes, error, changed } = useSelector((state) => state.watchList);
+  const { episodes, error, changed } = useSelector((state) => state.watchList);
 
   useEffect(() => {
     if (error) {

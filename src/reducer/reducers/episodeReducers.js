@@ -11,8 +11,6 @@ export const episodeListReducer = (state = { loading: true }, action) => {
 
     case EPISODE_LIST_SUCCESS:
       action.payload.info.pages = action.payload.convertPages;
-      // const convertPages = Math.ceil(action.payload.info.count / 25);
-      console.log('reducer episode', action.payload);
 
       let episodes;
 

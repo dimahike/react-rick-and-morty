@@ -13,7 +13,7 @@ export const characterList = (
   speciesFilter = '',
   genderFilter = '',
   statusFilter = '',
-) => async (dispatch, getState) => {
+) => async (dispatch) => {
   dispatch({ type: CHARACTER_LIST_REQUEST });
 
   let convertNewPage = page;
@@ -27,7 +27,6 @@ export const characterList = (
     );
     const json = await response.json();
     if (!response.ok) {
-      // console.log(json);
       dispatch({
         type: CHARACTER_LIST_FAIL,
         payload: {
@@ -64,7 +63,6 @@ export const characterDetails = (id) => async (dispatch) => {
     const response = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
     const json = await response.json();
     if (!response.ok) {
-      // console.log(json);
       dispatch({
         type: CHARACTER_DETAILS_FAIL,
         payload: {
@@ -73,7 +71,7 @@ export const characterDetails = (id) => async (dispatch) => {
       });
       return;
     }
-    // console.log('json', json);
+
     dispatch({
       type: CHARACTER_DETAILS_SUCCESS,
       payload: json,

@@ -1,21 +1,16 @@
 import {
   Box,
-  FormControl,
-  FormHelperText,
   List,
   ListItem,
   ListItemText,
   makeStyles,
-  NativeSelect,
   TextField,
   Typography,
 } from '@material-ui/core';
 import clsx from 'clsx';
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { seasons } from '../../../data.js';
+import React, { useState } from 'react';
 
-// import { episodeList } from '../../../reducer/actions/episodeActions';
+import { seasons } from '../../../data.js';
 
 const useStyles = makeStyles((theme) => ({
   leftGape: {

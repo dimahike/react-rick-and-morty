@@ -3,14 +3,10 @@ import { Box, makeStyles, SwipeableDrawer, useMediaQuery, useTheme } from '@mate
 import { useDispatch, useSelector } from 'react-redux';
 import { drawer as drawerAction } from '../reducer/actions/headerActions';
 
-const drawerWidth = 240;
-
 const useStyles = makeStyles((theme) => ({
-  drawer: {
-    // paddingTop: '15px',
-  },
+  drawer: {},
   aside: {
-    width: drawerWidth,
+    width: theme.spacing(30),
     top: '100px',
     left: '15px',
   },
@@ -23,12 +19,11 @@ const Aside = (props) => {
   const matches = useMediaQuery(theme.breakpoints.up(720));
   const drawer = useSelector((state) => state.drawer);
 
-  const toggleDrawer = (open) => (event) => {
+  const toggleDrawer = () => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
     dispatch(drawerAction(false));
-    // setOpen(open);
   };
   return (
     <>
