@@ -27,25 +27,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LocationsFilter = () => {
+const LocationsFilter = ({ filter }) => {
   const classes = useStyles();
   const [name, setName] = useState('');
   const [type, setType] = useState('');
   const [dimension, setDimension] = useState('');
 
-  const nameFieldHandler = (event, value) => {
-    console.log('event', event.target.value);
-    setName(event.target.value);
+  const onChangeNameFieldHandle = (e) => {
+    setName(e.target.value);
+    filter({
+      value: e.target.value,
+      type: 'name',
+    });
   };
 
-  const typeFieldHandler = (event, value) => {
-    console.log('event', event.target.value);
-    setType(event.target.value);
+  const onChangeTypeFieldHandle = (e) => {
+    setType(e.target.value);
+    filter({
+      value: e.target.value,
+      type: 'type',
+    });
   };
 
-  const dimensionFieldHandler = (event, value) => {
-    console.log('event', event.target.value);
-    setDimension(event.target.value);
+  const onChangeDimensionFieldHandle = (e) => {
+    setDimension(e.target.value);
+    filter({
+      value: e.target.value,
+      type: 'dimension',
+    });
   };
 
   return (
@@ -61,7 +70,7 @@ const LocationsFilter = () => {
             multiline
             variant="outlined"
             value={name}
-            onChange={nameFieldHandler}
+            onChange={onChangeNameFieldHandle}
           />
         </Box>
       </Box>
@@ -76,7 +85,7 @@ const LocationsFilter = () => {
             multiline
             variant="outlined"
             value={type}
-            onChange={typeFieldHandler}
+            onChange={onChangeTypeFieldHandle}
           />
         </Box>
       </Box>
@@ -91,7 +100,7 @@ const LocationsFilter = () => {
             multiline
             variant="outlined"
             value={dimension}
-            onChange={dimensionFieldHandler}
+            onChange={onChangeDimensionFieldHandle}
           />
         </Box>
       </Box>

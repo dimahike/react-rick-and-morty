@@ -2,21 +2,16 @@ import {
   Avatar,
   Box,
   Divider,
-  FormControl,
-  FormHelperText,
   List,
   ListItem,
   ListItemAvatar,
   ListItemText,
   makeStyles,
-  NativeSelect,
-  TextField,
   Typography,
 } from '@material-ui/core';
 import TvIcon from '@material-ui/icons/Tv';
-import ExploreIcon from '@material-ui/icons/Explore';
 import QueuePlayNextIcon from '@material-ui/icons/QueuePlayNext';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import poster from '../../../images/poster.jpg';
 
@@ -41,26 +36,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DetailsSideBar = () => {
+const DetailsSideBar = ({ episodes, changed }) => {
   const classes = useStyles();
-  const [name, setName] = useState('');
-  const [type, setType] = useState('');
-  const [dimension, setDimension] = useState('');
 
-  const nameFieldHandler = (event, value) => {
-    console.log('event', event.target.value);
-    setName(event.target.value);
-  };
+  const [watched, setWatched] = useState(0);
+  const [noWatched, setNoWatched] = useState(0);
 
-  const typeFieldHandler = (event, value) => {
-    console.log('event', event.target.value);
-    setType(event.target.value);
-  };
+  useEffect(() => {
+    let watchedCounter = 0;
 
-  const dimensionFieldHandler = (event, value) => {
-    console.log('event', event.target.value);
-    setDimension(event.target.value);
-  };
+    for (var i = 0; i < episodes.length; i++) {
+      if (episodes[i].watched) {
+        console.log('watched');
+        watchedCounter += 1;
+      }
+    }
+
+    setWatched(watchedCounter);
+    let noWatchedCounter = episodes.length - watchedCounter;
+    setNoWatched(noWatchedCounter);
+  }, [episodes, changed]);
 
   return (
     <>
@@ -88,7 +83,10 @@ const DetailsSideBar = () => {
                 <TvIcon />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary="Watched" secondary="10 Episodes" />
+            <ListItemText
+              primary="Watched"
+              secondary={`${watched} ${watched === 1 ? 'Episode' : 'Episodes'} `}
+            />
           </ListItem>
           <ListItem>
             <ListItemAvatar>
@@ -96,7 +94,10 @@ const DetailsSideBar = () => {
                 <QueuePlayNextIcon />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary="Wish To Watch" secondary="20 Episodes" />
+            <ListItemText
+              primary="Wish To Watch"
+              secondary={`${noWatched} ${watched === 1 ? 'Episode' : 'Episodes'}`}
+            />
           </ListItem>
         </List>
       </Box>

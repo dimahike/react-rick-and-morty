@@ -11,14 +11,26 @@ export const episodeListReducer = (state = { loading: true }, action) => {
 
     case EPISODE_LIST_SUCCESS:
       action.payload.info.pages = action.payload.convertPages;
-
+      // const convertPages = Math.ceil(action.payload.info.count / 25);
       console.log('reducer episode', action.payload);
 
       let episodes;
 
       if (action.payload.results.length === 2) {
-        const episodes5 = action.payload.results[1].slice(0, 5);
-        const unitEpisodes25 = action.payload.results[0].concat(episodes5);
+        const originalSizePage = 20;
+        const newSizePage = 25;
+        const sizeSlice = (newSizePage - originalSizePage) * (action.payload.convertPage - 1);
+
+        let episodesRequest1;
+        let episodesRequest2;
+        if (action.payload.convertPage === 1) {
+          episodesRequest1 = action.payload.results[0].slice(0, 20);
+          episodesRequest2 = action.payload.results[1].slice(0, 5);
+        } else {
+          episodesRequest1 = action.payload.results[0].slice(sizeSlice, 20);
+          episodesRequest2 = action.payload.results[1].slice(0, sizeSlice);
+        }
+        const unitEpisodes25 = episodesRequest1.concat(episodesRequest2);
         episodes = unitEpisodes25;
       } else {
         episodes = [].concat(action.payload.results[0]);
@@ -27,8 +39,8 @@ export const episodeListReducer = (state = { loading: true }, action) => {
       return {
         loading: false,
         info: {
-          count: 41,
-          pages: action.payload.convertPages,
+          count: action.payload.info.count,
+          page: action.payload.page,
         },
         episodes: episodes,
       };

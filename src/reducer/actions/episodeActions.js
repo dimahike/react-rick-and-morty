@@ -7,6 +7,8 @@ import {
 export const episodeList = (page = 1, name = '', season = 0) => async (dispatch) => {
   dispatch({ type: EPISODE_LIST_REQUEST });
 
+  const convertPage = Math.floor((25 * page) / 20);
+
   const convertNumSeason =
     season !== 0
       ? season.toLocaleString('en-US', {
@@ -17,7 +19,7 @@ export const episodeList = (page = 1, name = '', season = 0) => async (dispatch)
 
   try {
     const response = await fetch(
-      `https://rickandmortyapi.com/api/episode?name=${name}&episode=S${convertNumSeason}&page=${page}`,
+      `https://rickandmortyapi.com/api/episode?name=${name}&episode=S${convertNumSeason}&page=${convertPage}`,
     );
 
     const json = await response.json();
@@ -32,20 +34,19 @@ export const episodeList = (page = 1, name = '', season = 0) => async (dispatch)
       return;
     }
 
-    const convertPages = Math.ceil(json.info.count / 25);
-
-    if (page === convertPages) {
+    if (convertPage === json.info.pages) {
       dispatch({
         type: EPISODE_LIST_SUCCESS,
         payload: {
           info: json.info,
           results: [json.results],
-          convertPages: convertPages,
+          convertPage: convertPage,
+          page: page,
         },
       });
-    } else if (page > 0 && page < convertPages) {
+    } else if (convertPage > 0 && convertPage < json.info.pages) {
       const response2 = await fetch(
-        `https://rickandmortyapi.com/api/character?name=${convertNumSeason}&episode=S${convertNumSeason}&page=${
+        `https://rickandmortyapi.com/api/episode?name=${convertNumSeason}&episode=S${convertNumSeason}&page=${
           page + 1
         }`,
       );
@@ -54,9 +55,13 @@ export const episodeList = (page = 1, name = '', season = 0) => async (dispatch)
       if (!response2.ok) {
         // console.log(json);
         dispatch({
-          type: EPISODE_LIST_FAIL,
+          type: EPISODE_LIST_SUCCESS,
           payload: {
-            message: json.error,
+            info: json.info,
+            results: [json.results],
+
+            convertPage: convertPage,
+            page: page,
           },
         });
         return;
@@ -67,7 +72,8 @@ export const episodeList = (page = 1, name = '', season = 0) => async (dispatch)
         payload: {
           info: json.info,
           results: [json.results, json2.results],
-          convertPages: convertPages,
+          convertPage: convertPage,
+          page: page,
         },
       });
     }

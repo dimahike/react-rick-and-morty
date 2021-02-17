@@ -37,24 +37,23 @@ export default function TableUI({
   rows = [],
   episode = false,
   location = false,
+  handleChangePage,
 }) {
   const classes = useStyles2();
-  const [page, setPage] = React.useState(numPage - 1);
-  const [rowsPerPage, setRowsPerPage] = React.useState(numRowsPerPage);
 
-  console.log('rows', rows);
+  const [rowsPerPage, setRowsPerPage] = React.useState(numRowsPerPage);
 
   const emptyRows = rowsPerPage - rows.length;
 
-  const handleChangePage = (event, newPage) => {
-    console.log('newPage', newPage);
-    setPage(newPage);
-  };
+  // const handleChangePage = (event, newPage) => {
+  //   console.log('newPage', newPage);
+  //   setPage(newPage);
+  // };
 
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
+  // const handleChangeRowsPerPage = (event) => {
+  //   setRowsPerPage(parseInt(event.target.value, 10));
+  //   setPage(0);
+  // };
 
   // console.log(Object.keys(rows[0]));
   return (
@@ -78,8 +77,8 @@ export default function TableUI({
         </TableHead>
         <TableBody>
           {rows &&
-            rows.map((row) => (
-              <TableRow key={row.id}>
+            rows.map((row, index) => (
+              <TableRow key={`${row.id}_${index}`}>
                 {episode ? (
                   <>
                     <TableCell align="left">{row.id}</TableCell>
@@ -110,13 +109,13 @@ export default function TableUI({
               colSpan={3}
               count={count}
               rowsPerPage={rowsPerPage}
-              page={page}
+              page={numPage}
               SelectProps={{
                 inputProps: { 'aria-label': 'rows per page' },
                 native: true,
               }}
               onChangePage={handleChangePage}
-              onChangeRowsPerPage={handleChangeRowsPerPage}
+              // onChangeRowsPerPage={handleChangeRowsPerPage}
               ActionsComponent={TablePaginationUI}
             />
           </TableRow>

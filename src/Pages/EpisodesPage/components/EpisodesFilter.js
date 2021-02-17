@@ -10,9 +10,12 @@ import {
   TextField,
   Typography,
 } from '@material-ui/core';
+import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { episodeList } from '../../../reducer/actions/episodeActions';
+import { seasons } from '../../../data.js';
+
+// import { episodeList } from '../../../reducer/actions/episodeActions';
 
 const useStyles = makeStyles((theme) => ({
   leftGape: {
@@ -27,21 +30,33 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'uppercase',
     color: theme.palette.primary.dark,
   },
+  active: {
+    fontWeight: 900,
+  },
 }));
 
-const EpisodesFilter = () => {
+const EpisodesFilter = ({ filter }) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const [name, setName] = useState('');
 
-  const nameFieldHandler = (event, value) => {
-    console.log('event', event.target.value);
-    setName(event.target.value);
+  const [name, setName] = useState('');
+  const [season, setSeason] = useState(0);
+
+  const onChangeNameFieldHandle = (e) => {
+    setName(e.target.value);
+    filter({
+      value: e.target.value,
+      type: 'name',
+    });
   };
 
-  useEffect(() => {
-    dispatch(episodeList());
-  }, [dispatch]);
+  const onClickSeasonHandle = (index) => {
+    setSeason(index);
+
+    filter({
+      value: index,
+      type: 'season',
+    });
+  };
 
   return (
     <>
@@ -56,7 +71,7 @@ const EpisodesFilter = () => {
             multiline
             variant="outlined"
             value={name}
-            onChange={nameFieldHandler}
+            onChange={onChangeNameFieldHandle}
           />
         </Box>
       </Box>
@@ -66,25 +81,22 @@ const EpisodesFilter = () => {
           Seasons :
         </Typography>
         <List>
-          <ListItem button>
-            <ListItemText primary="All Seasons" className={classes.uppercase} />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Season 1" className={classes.uppercase} />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Season 2" className={classes.uppercase} />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Season 3" className={classes.uppercase} />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Season 4" className={classes.uppercase} />
-          </ListItem>
+          {seasons.map((seasonFilter, index) => (
+            <ListItem button key={seasonFilter} onClick={() => onClickSeasonHandle(index)}>
+              <ListItemText className={classes.uppercase}>
+                <Typography
+                  variant="subtitle2"
+                  className={clsx(seasons[season] === seasonFilter && classes.active)}>
+                  {seasonFilter}
+                </Typography>
+              </ListItemText>
+            </ListItem>
+          ))}
         </List>
       </Box>
 
-      <Box className={classes.input}>
+      {/* <Box className={classes.input}>
+       
         <Typography variant="h6" className={classes.leftGape}>
           Episodes :
         </Typography>
@@ -96,6 +108,7 @@ const EpisodesFilter = () => {
               name="age"
               // className={classes.selectEmpty}
               inputProps={{ 'aria-label': 'age' }}>
+              {}
               <option value={0}>All</option>
               <option value={1}>Episod 1</option>
               <option value={2}>Episod 2</option>
@@ -105,7 +118,7 @@ const EpisodesFilter = () => {
             <FormHelperText>With visually hidden label</FormHelperText>
           </FormControl>
         </Box>
-      </Box>
+      </Box> */}
     </>
   );
 };

@@ -2,6 +2,7 @@ export const statuses = ['any', 'alive', 'dead', 'unknown'];
 export const genders = ['any', 'female', 'male', 'genderless', 'unknown'];
 export const episodeOptions = ['eposode', 'name'];
 export const locationOptions = ['name', 'type', 'dimension'];
+export const seasons = ['All Seasons', 'Season 1', 'Season 2', 'Season 3', 'Season 4'];
 
 export const episodes = {
   info: {
