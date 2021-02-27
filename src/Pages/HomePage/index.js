@@ -52,7 +52,11 @@ const HomePage = () => {
   useEffect(() => {
     setNumPage(1);
     dispatch(characterList(numPage, nameFilter, speciesFilter, genderFilter, statusFilter));
-  }, [dispatch, numPage, nameFilter, speciesFilter, genderFilter, statusFilter]);
+  }, [dispatch, nameFilter, speciesFilter, genderFilter, statusFilter]);
+
+  useEffect(() => {
+    dispatch(characterList(numPage, nameFilter, speciesFilter, genderFilter, statusFilter));
+  }, [numPage]);
 
   return (
     <>
