@@ -51,6 +51,7 @@ const HomePage = () => {
 
   useEffect(() => {
     setNumPage(1);
+
     dispatch(characterList(numPage, nameFilter, speciesFilter, genderFilter, statusFilter));
   }, [dispatch, nameFilter, speciesFilter, genderFilter, statusFilter]);
 
@@ -85,7 +86,7 @@ const HomePage = () => {
           <Box display="flex" justifyContent="center" mt={2}>
             <Pagination
               count={info && info.pages ? info.pages : 1}
-              defaultPage={1}
+              page={numPage}
               siblingCount={matches ? 1 : 0}
               onChange={handleChange}
             />
